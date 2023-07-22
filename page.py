@@ -23,7 +23,9 @@ def app():
             response = openai_utils.send_request_to_openai(messages)
             st.session_state["response"] = response['choices'][0]['message']['content']
             st.session_state["generated_text"] = st.session_state["response"]  # Store the generated text in the session state
-            st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
+
+    # Display the generated text (if any)
+    st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
     # Section 2: Check Guidance
     if st.session_state["response"]:
