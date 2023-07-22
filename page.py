@@ -1,4 +1,3 @@
-
 import streamlit as st
 import openai
 from utils import openai_utils
@@ -22,8 +21,6 @@ def app():
             st.session_state["response"] = openai_utils.send_request_to_openai(messages)
             st.text_area('Your text will appear here', value=st.session_state["response"], max_chars=None, key=None)
 
-    # Section 2: Check Guidance
-def app():
     # Section 2: Check Guidance
     if st.session_state["response"]:
         st.header('Check Guidance')
