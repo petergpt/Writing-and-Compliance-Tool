@@ -40,6 +40,6 @@ def app():
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 result = response['choices'][0]['message']['content']  # Extract the content of the first message
-                st.text(result)  # Use st.text() instead of st.markdown()
+                st.markdown(result)
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
