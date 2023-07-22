@@ -1,5 +1,5 @@
 import streamlit as st
-from app import home_page, generate_text, check_guidance
+from app import check_guidance, generate_text, home_page
 
 PAGES = {
     "Home": home_page,

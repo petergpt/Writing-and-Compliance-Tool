@@ -1,5 +1,5 @@
-import streamlit as st
 import openai
+import streamlit as st
 from utils import openai_utils
 
 def app():
