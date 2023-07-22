@@ -12,7 +12,7 @@ def send_request_to_openai(messages):
       model="gpt-4",
       messages=messages,
       temperature=0.8,
-      max_tokens=1000  
+      max_tokens=2000  
     )
 
-    return response['choices'][0]['message']['content']
+    return response

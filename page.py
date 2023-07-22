@@ -36,9 +36,8 @@ def app():
                     {"role": "user", "name": "Alice", "content": f"{guidance_input}. Check the following text: {st.session_state['response']}"},
                 ]
                 raw_response = openai_utils.send_request_to_openai(messages)
-
+                
                 # Now parsing raw_response as per OpenAI's returned structure
-                # This assumes the 'content' field contains a string that we want to display
                 result = raw_response['choices'][0]['message']['content']
 
                 # Render the assessment
