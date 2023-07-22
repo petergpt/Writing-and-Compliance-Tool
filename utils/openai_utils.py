@@ -15,4 +15,4 @@ def send_request_to_openai(messages):
       max_tokens=2000  
     )
 
-    return response['choices'][0]['message']['content']
+    return response
