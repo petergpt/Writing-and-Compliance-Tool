@@ -1,9 +1,8 @@
 import os
 import openai
 
-api_key = os.environ["OPENAI_API_KEY"]
-
-openai.api_key = api_key
+OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
+openai.api_key = OPENAI_API_KEY
 
 def send_request_to_openai(messages):
     
