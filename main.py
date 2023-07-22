@@ -1,10 +1,9 @@
 import streamlit as st
-from app import check_guidance, generate_text, home_page
+import page
 
+# Page dictionary only includes single page.py
 PAGES = {
-    "Home": home_page,
-    "Section 1: Generate Text": generate_text,
-    "Section 2: Check Guidance": check_guidance
+    "Text Generation & Compliance Check": page,
 }
 
 st.sidebar.title('Navigation')
