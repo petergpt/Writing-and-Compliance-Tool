@@ -17,8 +17,8 @@ def app():
     if st.button('Generate Text', key='button1'):  # Add a unique key for the button
         if text_input and tone_input:
             messages = [
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "name": "Alice", "content": f"{tone_input}. {text_input}"},
+                {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. For both, please follow this guidance: {tone_input}."},
+                {"role": "user", "content": f"{text_input}"},
             ]
             response = openai_utils.send_request_to_openai(messages)
             st.session_state["response"] = response['choices'][0]['message']['content']
@@ -35,8 +35,8 @@ def app():
         if st.button('Check Compliance', key='button2'):  # Add a unique key for the button
             if guidance_input:
                 messages = [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "name": "Alice", "content": f"{guidance_input}. Check the following text: {st.session_state['response']}"},
+                    {"role": "system", "content": f"You are provided with the following guidance for what a message should comply with {guidance_input}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"},
+                    {"role": "user", "content": f"Analyse the following text: {st.session_state['response']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 result = response['choices'][0]['message']['content']  # Extract the content of the first message
