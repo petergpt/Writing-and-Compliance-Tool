@@ -18,7 +18,8 @@ def app():
                 {"role": "system", "content": "You are a helpful assistant"},
                 {"role": "user", "name": "Alice", "content": f"{tone_input}. {text_input}"},
             ]
-            st.session_state["response"] = openai_utils.send_request_to_openai(messages)
+            response = openai_utils.send_request_to_openai(messages)
+            st.session_state["response"] = response['choices'][0]['message']['content']
             st.text_area('Your text will appear here', value=st.session_state["response"], max_chars=None, key=None)
 
     # Section 2: Check Guidance
@@ -32,12 +33,12 @@ def app():
                     {"role": "system", "content": "You are a helpful assistant"},
                     {"role": "user", "name": "Alice", "content": f"{guidance_input}. Check the following text: {st.session_state['response']}"},
                 ]
-                raw_response = openai_utils.send_request_to_openai(messages)
+                response = openai_utils.send_request_to_openai(messages)
                 
-                # Now parsing raw_response as per OpenAI's returned structure
-                result = raw_response['choices'][0]['message']['content']
+                # Now response is already the content
+                result = response['choices'][0]['message']['content']
 
-                # Render the assessment
-                st.markdown(result)
+                # Render the response
+                st.text(result)
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
