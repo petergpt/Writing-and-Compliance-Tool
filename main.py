@@ -1,4 +1,3 @@
-import page
+import app
 
-# Call the app function directly
-page.app()
+app.run()
