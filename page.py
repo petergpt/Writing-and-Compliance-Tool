@@ -1,8 +1,8 @@
 import streamlit as st
 import openai
 import openai_utils
-from tone_of_voice import TONE_OF_VOICE_OPTIONS
-from guidance import GUIDANCE_OPTIONS
+from Tone_and_guidance.tone_of_voice import TONE_OF_VOICE_OPTIONS
+from Tone_and_guidance.guidance import GUIDANCE_OPTIONS
 
 def app():
     # Initialize session state if it doesn't exist
@@ -18,12 +18,12 @@ def app():
     # Dropdown for Tone of Voice
     st.subheader('Tone of Voice')
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
-    tone_input = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
+    tone_input = st.text_input('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
 
     # Dropdown for Guidance
     st.subheader('Guidance')
     guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
-    guidance_input = st.text_area('What does it need to comply with?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input')
+    guidance_input = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input')
 
     # Generate text button
     if st.button('Generate Text', key='button1'):  # Add a unique key for the button
