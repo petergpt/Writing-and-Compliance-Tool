@@ -1,7 +1,6 @@
 # Dictionary mapping dropdown options to corresponding text
 TONE_OF_VOICE_OPTIONS = {
-    "Sainsbury's": """
-When writing for Sainsbury's:
+    "Sainsbury's": """When writing for Sainsbury's:
 
 1. Use a warm, friendly tone. Avoid sounding corporate or formal. Make the customer feel like they're interacting with a real person.
 
@@ -23,8 +22,7 @@ For example:"Register for an online account to order your favorites in a few cli
 
 For example: "Grab extra savings when you order online"
 
-6. Don't sacrifice clarity for liveliness. Make sure key messages come through.
-""",
+6. Don't sacrifice clarity for liveliness. Make sure key messages come through.""",
     "Option 2": "Text for Option 2",
     # Add more options here
 }

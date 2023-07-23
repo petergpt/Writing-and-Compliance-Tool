@@ -1,7 +1,6 @@
 # Dictionary mapping dropdown options to corresponding text
 GUIDANCE_OPTIONS = {
-    "Consumer Duty": """
-1. Use clear, plain language and avoid jargon. Explain any technical terms.
+    "Consumer Duty": """1. Use clear, plain language and avoid jargon. Explain any technical terms.
 2. Ensure the communication provides key information needed for informed, timely decisions in customers' interests.
 3. Adopt a professional but customer-focused tone. Avoid overly formal language.
 4. Prominently highlight important details through layout, visual design, headings etc.
@@ -16,8 +15,7 @@ GUIDANCE_OPTIONS = {
 13. Give prominence to risks, limitations or exclusions; do not hide in small print.
 14. Enable customer to save, print or download important information.
 15. Ensure consistency with other materials in customer journey including verbal.
-16. Provide access to communication through multiple channels if possible.
-""",
+16. Provide access to communication through multiple channels if possible.""",
     "Option 2": "Text for Option 2",
     # Add more options here
 }
