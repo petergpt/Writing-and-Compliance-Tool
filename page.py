@@ -26,7 +26,7 @@ def app():
     if st.button('Generate Text', key='button1'):  # Add a unique key for the button
         if text_input and tone_input:
             messages = [
-                {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. Never output 2 options at the same time. For both, please follow this guidance: {tone_input}."},
+                {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. Never give 2 options, only respond to one. For both, please follow this guidance: {tone_input}."},
                 {"role": "user", "content": f"{text_input}"},
             ]
             response = openai_utils.send_request_to_openai(messages)

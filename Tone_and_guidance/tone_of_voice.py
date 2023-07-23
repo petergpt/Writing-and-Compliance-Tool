@@ -76,9 +76,9 @@ For example: "Check if you qualify" rather than "Check if he qualifies."
 5. Use Universally Understood Language
 5.1 Avoid idioms, slang, or cultural references that may not translate
 5.2 Consider if a non-English speaker would understand the reference
-5.3 Keep language clear and simple to be understood by all"""
+5.3 Keep language clear and simple to be understood by all""",
 
-    "Coutts": """The Coutts tone conveys prestige, sophistication, and discretion. Follow these guidelines:
+    "Coutts":"""The Coutts tone conveys prestige, sophistication, and discretion. Follow these guidelines:
 
 1. Use formal but accessible language. Avoid complex financial jargon. Convey expertise clearly.
 
