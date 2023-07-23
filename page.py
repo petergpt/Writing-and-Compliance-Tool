@@ -25,13 +25,14 @@ def app():
     # Generate text button
     if st.button('Generate Text', key='button1'):  # Add a unique key for the button
         if text_input and tone_input:
-            messages = [
-                {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. Never give 2 options, only respond to one. For both, please follow this guidance: {tone_input}."},
-                {"role": "user", "content": f"{text_input}"},
-            ]
-            response = openai_utils.send_request_to_openai(messages)
-            st.session_state["response"] = response['choices'][0]['message']['content']
-            st.session_state["generated_text"] = st.session_state["response"]  # Store the generated text in the session state
+            with st.spinner('Generating text...'):
+                messages = [
+                    {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. Never list both options, onlt carry out one. For both, please follow this guidance: {tone_input}."},
+                    {"role": "user", "content": f"{text_input}"},
+                ]
+                response = openai_utils.send_request_to_openai(messages)
+                st.session_state["response"] = response['choices'][0]['message']['content']
+                st.session_state["generated_text"] = st.session_state["response"]  # Store the generated text in the session state
 
     # Display the generated text (if any)
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
@@ -46,12 +47,13 @@ def app():
 
         if st.button('Check Compliance', key='button2'):  # Add a unique key for the button
             if st.session_state["guidance_input"]:
-                messages = [
-                    {"role": "system", "content": f"You are provided with the following guidance for what a message should comply with {st.session_state['guidance_input']}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"},
-                    {"role": "user", "content": f"Analyse the following text: {st.session_state['response']}"},
-                ]
-                response = openai_utils.send_request_to_openai(messages)
-                result = response['choices'][0]['message']['content']  # Extract the content of the first message
-                st.markdown(result)
+                with st.spinner('Checking for compliance...'):
+                    messages = [
+                        {"role": "system", "content": f"You are provided with the following guidance for what a message should comply with {st.session_state['guidance_input']}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"},
+                        {"role": "user", "content": f"Analyse the following text: {st.session_state['response']}"},
+                    ]
+                    response = openai_utils.send_request_to_openai(messages)
+                    result = response['choices'][0]['message']['content']  # Extract the content of the first message
+                    st.markdown(result)
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
