@@ -52,8 +52,8 @@ def check_guidance():
                     st.markdown(result)
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
-    else:
-        st.warning('Please generate text first')
+    # else:
+    #     st.warning('Please generate text first')
 
 
 def test_persona_perception():
@@ -79,5 +79,6 @@ def test_persona_perception():
                     st.markdown(response['choices'][0]['message']['content'])
             else:
                 st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
-    else:
-        st.warning('Please generate text and check guidance first')
+    # else:
+    #     st.warning('Please generate text and check guidance first')
+
