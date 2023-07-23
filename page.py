@@ -18,7 +18,7 @@ def app():
     # Dropdown for Tone of Voice
     st.subheader('Tone of Voice')
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
-    tone_input = st.text_input('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
+    tone_input = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
 
     # Dropdown for Guidance
     st.subheader('Guidance')
