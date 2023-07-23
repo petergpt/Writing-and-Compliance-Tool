@@ -1,6 +1,6 @@
 QUESTIONS_OPTIONS = {
 
-"Understanding": """1. Was the information easy to understand and written in clear, plain language?
+"Consumer Duty Survey": """1. Was the information easy to understand and written in clear, plain language?
 
 a. Yes, it was very easy to understand
 b. Somewhat easy to understand  
