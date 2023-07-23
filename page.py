@@ -38,12 +38,11 @@ def app():
 
     # Section 2: Check Guidance
     if st.session_state["response"]:
-      st.header('Check Guidance')
-    # Dropdown for Guidance
-      st.subheader('Guidance')
-    guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
-    st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
-
+        st.header('Check Guidance')
+        # Dropdown for Guidance
+        st.subheader('Guidance')
+        guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
+        st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
 
         if st.button('Check Compliance', key='button2'):  # Add a unique key for the button
             if st.session_state["guidance_input"]:
