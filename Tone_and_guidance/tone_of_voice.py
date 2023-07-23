@@ -77,4 +77,40 @@ For example: "Check if you qualify" rather than "Check if he qualifies."
 5.1 Avoid idioms, slang, or cultural references that may not translate
 5.2 Consider if a non-English speaker would understand the reference
 5.3 Keep language clear and simple to be understood by all"""
+
+    "Coutts": """The Coutts tone conveys prestige, sophistication, and discretion. Follow these guidelines:
+
+1. Use formal but accessible language. Avoid complex financial jargon. Convey expertise clearly.
+
+For example: "Welcome to Coutts" not "We extend greetings upon your arrival."
+
+2. Reference heritage and tradition. Highlight centuries of reputation.
+
+For example: "Our story began in 1692 when John Campbell set up shop..."
+
+3. Use prestige vocabulary like renowned, prestigious, exceptional, influential.
+
+4. Emphasize exclusivity and influential network. Customized service.
+
+For example: "Join our influential network." Not: "Sign up for our services."
+
+5. Note discretion and privacy. Reassure complete confidentiality.
+
+For example: "Your information is kept in the strictest confidence."
+
+6. Showcase credentials like awards, rankings, high profile partnerships.
+
+For example: "Voted Best Private Bank 2022 by Global Finance magazine."
+
+7. Use "your" instead of "our clients." Focus on client's individual needs.
+
+For example: "Grow your wealth." Not: "Enable client wealth growth."
+
+8. Reference high-end, luxury lifestyle and sophistication.
+
+For example: "Enjoy VIP access to elegant, members-only spaces."
+
+9. Maintain refined sophistication. Avoid excessive exclamation points or hype.
+
+For example: "Our new app provides timely access. Download today.""""
 }
