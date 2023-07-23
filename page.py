@@ -7,25 +7,23 @@ from Tone_and_guidance.questions import QUESTIONS_OPTIONS
 from Tone_and_guidance.personas import PERSONAS_OPTIONS
 
 
-def app():
-    # Initialize session state if it doesn't exist
-    if "response" not in st.session_state:
-        st.session_state["response"] = ""
-    if "generated_text" not in st.session_state:
-        st.session_state["generated_text"] = ""
-    if "guidance_input" not in st.session_state:
-        st.session_state["guidance_input"] = ""
+# Initialize session state if it doesn't exist
+if "response" not in st.session_state:
+    st.session_state["response"] = ""
+if "generated_text" not in st.session_state:
+    st.session_state["generated_text"] = ""
+if "guidance_input" not in st.session_state:
+    st.session_state["guidance_input"] = ""
 
-    # Section 1: Generate Text
+
+def generate_text():
     st.header('Generate Text')
     text_input = st.text_area('What do you want to write?', value='', max_chars=1000)
 
-    # Dropdown for Tone of Voice
     st.subheader('Tone of Voice')
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
     tone_input = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
 
-    # Generate text button
     if st.button('Generate Text', key='button1'):  # Add a unique key for the button
         if text_input and tone_input:
             with st.spinner('Generating text...'):
@@ -37,13 +35,13 @@ def app():
                 st.session_state["response"] = response['choices'][0]['message']['content']
                 st.session_state["generated_text"] = st.session_state["response"]  # Store the generated text in the session state
 
-    # Display the generated text (if any)
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
-    # Section 2: Check Guidance
+
+def check_guidance():
     if st.session_state["response"]:
         st.header('Check Guidance')
-        # Dropdown for Guidance
+
         st.subheader('Guidance')
         guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
         st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
@@ -60,17 +58,18 @@ def app():
                     st.markdown(result)
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
+    else:
+        st.warning('Please generate text first')
 
-    # Section 3: Test Persona Perception
+
+def test_persona_perception():
     if st.session_state["response"]:
         st.header('Test Persona Perception')
 
-        # Dropdown for Questions
         st.subheader('Questions')
         questions_option = st.selectbox('Select a set of questions', list(QUESTIONS_OPTIONS.keys()), key='questions')
         st.session_state["questions_input"] = st.text_area('The following questions will be answered by the persona', value=QUESTIONS_OPTIONS[questions_option], max_chars=None, key='questions_input_widget')
 
-        # Dropdown for Persona
         st.subheader('Persona')
         persona_option = st.selectbox('Select a persona', list(PERSONAS_OPTIONS.keys()), key='persona')
         st.session_state["persona_input"] = st.text_area('The following persona will answer the questions', value=PERSONAS_OPTIONS[persona_option], max_chars=None, key='persona_input_widget')
@@ -87,6 +86,17 @@ def app():
                     st.markdown(result)
             else:
                 st.warning('Please select a set of questions and a persona, and ensure text is generated in Section 1')
+    else:
+        st.warning('Please generate text first')
 
-if __name__ == '__main__':
-    app()
+
+# Add a sidebar for navigation
+st.sidebar.title('Navigation')
+page = st.sidebar.radio('Go to', ['Generate Text', 'Check Guidance', 'Test Persona Perception'])
+
+if page == 'Generate Text':
+    generate_text()
+elif page == 'Check Guidance':
+    check_guidance()
+elif page == 'Test Persona Perception':
+    test_persona_perception()
