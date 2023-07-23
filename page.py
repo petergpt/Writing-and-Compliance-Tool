@@ -1,6 +1,8 @@
 import streamlit as st
 import openai
 import openai_utils
+from tone_of_voice import TONE_OF_VOICE_OPTIONS
+from guidance import GUIDANCE_OPTIONS
 
 def app():
     # Initialize session state if it doesn't exist
@@ -8,6 +10,22 @@ def app():
         st.session_state["response"] = ""
     if "generated_text" not in st.session_state:
         st.session_state["generated_text"] = ""
+
+    # Section 1: Generate Text
+    st.header('Generate Text')
+    text_input = st.text_area('What do you want to write?', value='', max_chars=1000)
+
+    # Dropdown for Tone of Voice
+    st.header('Tone of Voice')
+    tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()))
+    tone_text = TONE_OF_VOICE_OPTIONS[tone_option]
+    tone_input = st.text_area('Text for selected tone', value=tone_text, max_chars=1000)
+
+    # Dropdown for Guidance
+    st.header('Guidance')
+    guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()))
+    guidance_text = GUIDANCE_OPTIONS[guidance_option]
+    guidance_input = st.text_area('Text for selected guidance', value=guidance_text, max_chars=1000)
 
     # Section 1: Generate Text
     st.header('Generate Text')
