@@ -16,22 +16,16 @@ def app():
     text_input = st.text_area('What do you want to write?', value='', max_chars=1000)
 
     # Dropdown for Tone of Voice
-    st.header('Tone of Voice')
-    tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()))
-    tone_text = TONE_OF_VOICE_OPTIONS[tone_option]
-    tone_input = st.text_area('Text for selected tone', value=tone_text, max_chars=1000)
+    st.subheader('Tone of Voice')
+    tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
+    tone_input = st.text_input('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
 
     # Dropdown for Guidance
-    st.header('Guidance')
-    guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()))
-    guidance_text = GUIDANCE_OPTIONS[guidance_option]
-    guidance_input = st.text_area('Text for selected guidance', value=guidance_text, max_chars=1000)
+    st.subheader('Guidance')
+    guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
+    guidance_input = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input')
 
-    # Section 1: Generate Text
-    st.header('Generate Text')
-    text_input = st.text_area('What do you want to write?', value='', max_chars=None, key=None)
-    tone_input = st.text_input('What style should be written in?', value='', max_chars=None, key=None)
-
+    # Generate text button
     if st.button('Generate Text', key='button1'):  # Add a unique key for the button
         if text_input and tone_input:
             messages = [
@@ -48,7 +42,6 @@ def app():
     # Section 2: Check Guidance
     if st.session_state["response"]:
         st.header('Check Guidance')
-        guidance_input = st.text_area('What does it need to comply with (from Section 1)?', value='', max_chars=None, key=None)
 
         if st.button('Check Compliance', key='button2'):  # Add a unique key for the button
             if guidance_input:
