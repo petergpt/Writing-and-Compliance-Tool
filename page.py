@@ -72,7 +72,7 @@ def test_persona_perception():
             if st.session_state["questions_input"] and st.session_state["persona_input"]:
                 with st.spinner('Testing persona perception...'):
                     messages = [
-                        {"role": "system", "content": f"You will take on the persona of a {persona_option} and answer the following questions based on the text: {st.session_state['questions_input']}."},
+                        {"role": "system", "content": f"You will fully embody a persona of a {persona_option} and answer the following questions based on the text. You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Answer the following questions: {st.session_state['questions_input']}. Format your answers in a markdown table, columns: Question, Answer, Commentary."},
                         {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
                     ]
                     response = openai_utils.send_request_to_openai(messages)
