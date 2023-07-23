@@ -1,3 +1,3 @@
-import app
+import page
 
-app.run()
+page.run()
