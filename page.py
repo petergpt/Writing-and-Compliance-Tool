@@ -37,10 +37,10 @@ def app():
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
     # Section 2: Check Guidance
-if st.session_state["response"]:
-    st.header('Check Guidance')
+    if st.session_state["response"]:
+      st.header('Check Guidance')
     # Dropdown for Guidance
-    st.subheader('Guidance')
+      st.subheader('Guidance')
     guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
     st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
 
