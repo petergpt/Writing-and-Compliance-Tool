@@ -1,6 +1,6 @@
 import streamlit as st
 import openai
-from utils import openai_utils
+import openai_utils
 
 def app():
     # Initialize session state if it doesn't exist
