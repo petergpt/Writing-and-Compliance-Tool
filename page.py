@@ -20,7 +20,7 @@ def app():
     # Dropdown for Tone of Voice
     st.subheader('Tone of Voice')
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
-    tone_input = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
+    tone_text_area = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_text_area')
 
     # Generate text button
     if st.button('Generate Text', key='button1'):  # Add a unique key for the button
@@ -39,10 +39,10 @@ def app():
     # Section 2: Check Guidance
     if st.session_state["response"]:
         st.header('Check Guidance')
-        # Dropdown for Guidance
-        st.subheader('Guidance')
-        guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
-        st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input')
+            # Dropdown for Guidance
+    st.subheader('Guidance')
+    guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
+    guidance_text_area = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_text_area')
 
         if st.button('Check Compliance', key='button2'):  # Add a unique key for the button
             if st.session_state["guidance_input"]:
