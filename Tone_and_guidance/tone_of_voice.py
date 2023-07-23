@@ -112,5 +112,5 @@ For example: "Enjoy VIP access to elegant, members-only spaces."
 
 9. Maintain refined sophistication. Avoid excessive exclamation points or hype.
 
-For example: "Our new app provides timely access. Download today.""""
+For example: "Our new app provides timely access. Download today".""",
 }
