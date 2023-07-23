@@ -6,16 +6,13 @@ from Tone_and_guidance.guidance import GUIDANCE_OPTIONS
 from Tone_and_guidance.questions import QUESTIONS_OPTIONS
 from Tone_and_guidance.personas import PERSONAS_OPTIONS
 
-# Initialize session state if it doesn't exist
-if "response" not in st.session_state:
-    st.session_state["response"] = ""
-if "generated_text" not in st.session_state:
-    st.session_state["generated_text"] = ""
-if "guidance_input" not in st.session_state:
-    st.session_state["guidance_input"] = ""
-
 def generate_text():
     st.header('Generate Text')
+
+    # Initialize session state if it doesn't exist
+    if "generated_text" not in st.session_state:
+        st.session_state["generated_text"] = ""
+
     text_input = st.text_area('What do you want to write?', value='', max_chars=1000)
 
     st.subheader('Tone of Voice')
@@ -26,18 +23,17 @@ def generate_text():
         if text_input and tone_input:
             with st.spinner('Generating text...'):
                 messages = [
-                    {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. Never list both options, onlt carry out one. For both, please follow this guidance: {tone_input}."},
+                    {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. Never list both options, only carry out one. For both, please follow this guidance: {tone_input}."},
                     {"role": "user", "content": f"{text_input}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
-                st.session_state["response"] = response['choices'][0]['message']['content']
-                st.session_state["generated_text"] = st.session_state["response"]
+                st.session_state["generated_text"] = response['choices'][0]['message']['content']
 
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
 
 def check_guidance():
-    if st.session_state["response"]:
+    if "generated_text" in st.session_state and st.session_state["generated_text"]:
         st.header('Check Guidance')
 
         st.subheader('Guidance')
@@ -48,8 +44,8 @@ def check_guidance():
             if st.session_state["guidance_input"]:
                 with st.spinner('Checking for compliance...'):
                     messages = [
-                        {"role": "system", "content": f"You are provided with the following guidance for what a message should comply with {st.session_state['guidance_input']}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"},
-                        {"role": "user", "content": f"Analyse the following text: {st.session_state['response']}"},
+                        {"role": "system", "content": f"You are provided with the following guidance for what a message should comply with {st.session_state['guidance_input']}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"},
+                        {"role": "user", "content": f"Analyse the following text: {st.session_state['generated_text']}"},
                     ]
                     response = openai_utils.send_request_to_openai(messages)
                     result = response['choices'][0]['message']['content']  # Extract the content of the first message
@@ -61,7 +57,7 @@ def check_guidance():
 
 
 def test_persona_perception():
-    if st.session_state["response"] and st.session_state["guidance_input"]:
+    if "generated_text" in st.session_state and st.session_state["generated_text"] and "guidance_input" in st.session_state and st.session_state["guidance_input"]:
         st.header('Test Persona Perception')
 
         st.subheader('Questions')
@@ -77,18 +73,11 @@ def test_persona_perception():
                 with st.spinner('Testing persona perception...'):
                     messages = [
                         {"role": "system", "content": f"You will take on the persona of a {persona_option} and answer the following questions based on the text: {st.session_state['questions_input']}."},
-                        {"role": "user", "content": f"Here is the text to analyze: {st.session_state['response']}"},
+                        {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
                     ]
                     response = openai_utils.send_request_to_openai(messages)
-                    result = response['choices'][0]['message']['content']  # Extract the content of the first message
-                    st.markdown(result)
+                    st.markdown(response['choices'][0]['message']['content'])
             else:
-                st.warning('Please select a set of questions and a persona, and ensure text is generated in Section 1')
+                st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
     else:
-        st.warning('Please generate text first and check guidance')
-
-
-# Call the functions directly
-generate_text()
-check_guidance()
-test_persona_perception()
+        st.warning('Please generate text and check guidance first')
