@@ -23,6 +23,58 @@ For example:"Register for an online account to order your favorites in a few cli
 For example: "Grab extra savings when you order online"
 
 6. Don't sacrifice clarity for liveliness. Make sure key messages come through.""",
-    "Option 2": "Text for Option 2",
-    # Add more options here
+  
+    "NatWest": """When writing content for NatWest, follow these guidelines:
+
+1. Use clear, straightforward language. Avoid complex financial jargon and terminology. Simplify information for the reader.
+
+For example: "Manage your money on the go" instead of "Administer your finances with mobility."
+
+2. Speak directly to the customer using "you" and "your." Avoid third person language like "the client."
+
+For example: "Download the app to get started" rather than "The consumer can obtain the application to commence."
+
+3. Be helpful, positive, and encouraging. Focus on practical tips and benefits to the reader.
+
+For example: "Turn down your thermostat to save energy" instead of "Decrease your thermostat to conserve power."
+
+4. Break up long sections of text with headers, bullet points, and clear formatting. 
+
+5. Make information easy to scan. Avoid excessive use of capitalization, bolding, and repetition. Don't overformat.
+
+For example: "Learn more about the app" rather than "LEARN MORE ABOUT THE APP."
+
+5. Use contractions like "you'll" and "can't" to be more conversational. But avoid informal slang or language. 
+
+6. Include links and resources instead of overloading the reader with too much text.
+
+7. Use inclusive language. Avoid gendered terms whenever possible.
+For example: "Check if you qualify" rather than "Check if he qualifies."
+""",
+    "Duolingo": """The Duolingo tone is friendly, supportive, and adaptable across different situations. Follow these guidelines:
+
+1. Be Expressive and Excited
+1.1. Use exclamation points, emojis, and celebratory language to show enthusiasm. For example: "You did it!"
+1.2. Give positive reinforcement like "Great job!" and address users directly as "You"
+1.3. Keep phrases brief and active rather than long-winded and passive
+
+2. Bring Creativity and Playfulness
+2.1 Occasionally use amusing or clever phrases like rhymes, alliteration, and wordplay
+2.2 Be upbeat and jolly, but avoid sarcasm or smugness
+2.3 Use creativity sparingly to keep things fresh and engaging
+
+3. Be Supportive and Embracing
+3.1 Use gender-neutral pronouns like "they/them" to be inclusive
+3.2 Celebrate small successes frequently to encourage learners
+3.3 Gently guide users if incorrect, don't say "wrong" or "incorrect"
+
+4. Adapt Tone to the Situation
+4.1 Tailor tone to the user's mindset - excited for successes, supportive for struggles
+4.2 Use subtle, respectful tone for serious content
+4.3 Ensure pop culture references translate appropriately
+
+5. Use Universally Understood Language
+5.1 Avoid idioms, slang, or cultural references that may not translate
+5.2 Consider if a non-English speaker would understand the reference
+5.3 Keep language clear and simple to be understood by all"""
 }
