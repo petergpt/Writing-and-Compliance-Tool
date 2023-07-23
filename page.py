@@ -6,7 +6,6 @@ from Tone_and_guidance.guidance import GUIDANCE_OPTIONS
 from Tone_and_guidance.questions import QUESTIONS_OPTIONS
 from Tone_and_guidance.personas import PERSONAS_OPTIONS
 
-
 # Initialize session state if it doesn't exist
 if "response" not in st.session_state:
     st.session_state["response"] = ""
@@ -14,7 +13,6 @@ if "generated_text" not in st.session_state:
     st.session_state["generated_text"] = ""
 if "guidance_input" not in st.session_state:
     st.session_state["guidance_input"] = ""
-
 
 def generate_text():
     st.header('Generate Text')
@@ -24,7 +22,7 @@ def generate_text():
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
     tone_input = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
 
-    if st.button('Generate Text', key='button1'):  # Add a unique key for the button
+    if st.button('Generate Text', key='button1'):  
         if text_input and tone_input:
             with st.spinner('Generating text...'):
                 messages = [
@@ -33,7 +31,7 @@ def generate_text():
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 st.session_state["response"] = response['choices'][0]['message']['content']
-                st.session_state["generated_text"] = st.session_state["response"]  # Store the generated text in the session state
+                st.session_state["generated_text"] = st.session_state["response"]
 
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
@@ -46,7 +44,7 @@ def check_guidance():
         guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
         st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
 
-        if st.button('Check Compliance', key='button2'):  # Add a unique key for the button
+        if st.button('Check Compliance', key='button2'):  
             if st.session_state["guidance_input"]:
                 with st.spinner('Checking for compliance...'):
                     messages = [
@@ -63,7 +61,7 @@ def check_guidance():
 
 
 def test_persona_perception():
-    if st.session_state["response"]:
+    if st.session_state["response"] and st.session_state["guidance_input"]:
         st.header('Test Persona Perception')
 
         st.subheader('Questions')
@@ -74,7 +72,7 @@ def test_persona_perception():
         persona_option = st.selectbox('Select a persona', list(PERSONAS_OPTIONS.keys()), key='persona')
         st.session_state["persona_input"] = st.text_area('The following persona will answer the questions', value=PERSONAS_OPTIONS[persona_option], max_chars=None, key='persona_input_widget')
 
-        if st.button('Test Persona', key='button3'):  # Add a unique key for the button
+        if st.button('Test Persona', key='button3'):  
             if st.session_state["questions_input"] and st.session_state["persona_input"]:
                 with st.spinner('Testing persona perception...'):
                     messages = [
@@ -87,16 +85,10 @@ def test_persona_perception():
             else:
                 st.warning('Please select a set of questions and a persona, and ensure text is generated in Section 1')
     else:
-        st.warning('Please generate text first')
+        st.warning('Please generate text first and check guidance')
 
 
-# Add a sidebar for navigation
-st.sidebar.title('Navigation')
-page = st.sidebar.radio('Go to', ['Generate Text', 'Check Guidance', 'Test Persona Perception'])
-
-if page == 'Generate Text':
-    generate_text()
-elif page == 'Check Guidance':
-    check_guidance()
-elif page == 'Test Persona Perception':
-    test_persona_perception()
+# Call the functions directly
+generate_text()
+check_guidance()
+test_persona_perception()
