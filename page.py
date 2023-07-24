@@ -40,6 +40,9 @@ def check_guidance():
         guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
         st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
 
+        # Create an empty container for the output
+        output_container = st.empty()
+
         if st.button('Check Compliance', key='button2'):  
             if st.session_state["guidance_input"]:
                 with st.spinner('Checking for compliance...'):
@@ -49,11 +52,11 @@ def check_guidance():
                     ]
                     response = openai_utils.send_request_to_openai(messages)
                     result = response['choices'][0]['message']['content']  # Extract the content of the first message
-                    st.markdown(result)
+
+                    # Update the output container with the markdown
+                    output_container.markdown(result)
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
-    # else:
-    #     st.warning('Please generate text first')
 
 
 def test_persona_perception():
