@@ -13,7 +13,7 @@ def generate_text():
     if "generated_text" not in st.session_state:
         st.session_state["generated_text"] = ""
 
-    text_input = st.text_area('What do you want to write?', value='', max_chars=1000)
+    text_input = st.text_area('What do you want to write?', value='', max_chars=10000)
 
     st.subheader('Tone of Voice')
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
@@ -23,7 +23,7 @@ def generate_text():
         if text_input and tone_input:
             with st.spinner('Generating text...'):
                 messages = [
-                    {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write. Never list both options, only carry out one. For both, please follow this guidance: {tone_input}."},
+                    {"role": "system", "content": f"There are 2 options, 1) You are given instructions to generate a certain bit of text OR 2) You are provided with a bit of text to re-write in the tone of voice provided. Never do both options, only carry out one. For both, please follow this guidance: {tone_input}."},
                     {"role": "user", "content": f"{text_input}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
