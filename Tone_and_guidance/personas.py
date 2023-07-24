@@ -1,21 +1,21 @@
 PERSONAS_OPTIONS = {
-    "Teenage Aspiring Artist": "A 16-year-old high school student from an urban area. Has a casual, relaxed tone with a focus on modern slang. Regular user of social media. Comfortable with digital technology. Has English as their first language. Reading age is equivalent to their actual age.",
+    "Teenage Aspiring Artist": "Age: 16 years. Occupation: High school student with part-time work in a local cafe. Background: Urban dweller, avid interest in digital art and music. Communication Preference: Casual, relaxed tone with a focus on modern slang. Digital Literacy: Regular user of social media, comfortable with digital technology. Reading Age: 16 years. English proficiency: Native speaker.",
 
-    "Immigrant Entrepreneur": "A 35-year-old small business owner who immigrated from a non-English speaking country 5 years ago. Has a formal tone, but may struggle with complex English. Owns a small retail business. Reading age estimated around 12 years.",
+    "Immigrant Entrepreneur": "Age: 35 years. Occupation: Small business owner. Background: Immigrated from a non-English speaking country 5 years ago. Communication Preference: Formal tone, may struggle with complex English. Digital Literacy: Comfortable using basic business software, but struggles with complex digital tools. Reading Age: 12 years. English proficiency: Intermediate.",
 
-    "Disabled Veteran": "A 40-year-old war veteran with a physical disability, uses assistive technologies. Prefers straightforward and clear language. May struggle with long text due to physical limitations. Reading age is around adult level.",
+    "Disabled Veteran": "Age: 40 years. Occupation: Unemployed, former military. Background: Physical disability, uses assistive technologies. Communication Preference: Straightforward and clear language. Digital Literacy: Basic computer skills, depends on assistive technology. Reading Age: Adult level. English proficiency: Native speaker.",
 
-    "Single Parent": "A 30-year-old single parent juggling multiple jobs and raising two children. Prefers casual and concise language. Comfortable with using digital technology. English is their first language. Reading age is around adult level.",
+    "Single Parent": "Age: 30 years. Occupation: Working multiple part-time jobs. Background: Single parent raising two children. Communication Preference: Casual and concise language. Digital Literacy: Comfortable with using digital technology. Reading Age: Adult level. English proficiency: Native speaker.",
 
-    "Retired Miner": "A 70-year-old retiree from a small mining town. Has basic education. Prefers simple and straightforward language. Might struggle with complex sentences or technical terms. Reading age is around 9 years.",
+    "Retired Miner": "Age: 70 years. Occupation: Retired, formerly worked in mining. Background: Lives in a small mining town. Communication Preference: Simple and straightforward language, struggles with complex sentences or technical terms. Digital Literacy: Limited, mainly uses technology for phone calls and television. Reading Age: 9 years. English proficiency: Native speaker.",
 
-    "Deaf University Student": "A 22-year-old university student pursuing a degree in Computer Science. Communicates using British Sign Language. Prefers written language that is clear and concise. Highly comfortable with digital technology. Reading age is at university level.",
+    "Deaf University Student": "Age: 22 years. Occupation: University student, Computer Science major. Background: Deaf, communicates using British Sign Language. Communication Preference: Written language that is clear and concise. Digital Literacy: Highly comfortable with digital technology. Reading Age: University level. English proficiency: Native speaker.",
 
-    "Migrant Agricultural Worker": "A 45-year-old migrant worker with limited English comprehension working in the agricultural sector. Prefers very simple and clear language. Might struggle with long texts and complex sentences. Reading age is around 7 years.",
+    "Migrant Agricultural Worker": "Age: 45 years. Occupation: Agricultural worker. Background: Migrant with limited English comprehension. Communication Preference: Very simple and clear language, struggles with long texts and complex sentences. Digital Literacy: Basic, uses mobile phone for calls and messages only. Reading Age: 7 years. English proficiency: Basic.",
 
-    "Rural Schoolteacher": "A 50-year-old primary school teacher working in a small, remote village. Prefers a mix of formal and informal language. Comfortable with digital technology. Reading age is around adult level.",
+    "Rural Schoolteacher": "Age: 50 years. Occupation: Primary school teacher. Background: Lives and works in a small, remote village. Communication Preference: Mix of formal and informal language. Digital Literacy: Comfortable with digital technology. Reading Age: Adult level. English proficiency: Native speaker.",
 
-    "Urban Social Worker": "A 28-year-old social worker assisting low-income families in a large city. Prefers clear and empathetic language. Comfortable with digital technology. Reading age is around adult level.",
+    "Urban Social Worker": "Age: 28 years. Occupation: Social worker. Background: Works with low-income families in a large city. Communication Preference: Clear and empathetic language. Digital Literacy: Comfortable with digital technology. Reading Age: Adult level. English proficiency: Native speaker.",
 
-    "Professionally-Trained Nurse": "A 32-year-old nurse from the Philippines working in the UK healthcare sector with English as her second language. Has formal tone, but may struggle with complex English. Reading age is around 15 years."
+    "Professionally-Trained Nurse": "Age: 32 years. Occupation: Nurse. Background: From the Philippines, working in the UK healthcare sector. Communication Preference: Formal tone, may struggle with complex English. Digital Literacy: Uses digital technology for work, comfortable with medical software. Reading Age: 15 years. English proficiency: Intermediate."
 }
