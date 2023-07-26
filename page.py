@@ -26,7 +26,7 @@ def generate_text():
     prompt = CONTENT_TYPE_PROMPTS[content_type]
 
     # Editable system prompt
-    if st.checkbox('Click to edit the system prompt'):
+    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_gen'):
         prompt = st.text_area('Edit the system prompt if you want', value=prompt, key='system_prompt')
 
     text_input = st.text_area('What do you want to write?', value='', max_chars=10000)
@@ -56,7 +56,7 @@ def check_guidance():
 
     # Editable system prompt
     default_prompt = "You are provided with the following guidance for what a message should comply..."
-    if st.checkbox('Click to edit the system prompt'):
+    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_check'):
         default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_check_guidance')
 
     st.subheader('Guidance')
@@ -84,7 +84,7 @@ def test_persona_perception():
 
     # Editable system prompt
     default_prompt = "You will fully embody a persona of a {persona_option} and answer the following questions based on the text..."
-    if st.checkbox('Click to edit the system prompt'):
+    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_persona'):
         default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_test_persona')
 
     st.subheader('Questions')
