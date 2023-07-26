@@ -54,20 +54,22 @@ def generate_text():
 def check_guidance():
     st.header('Check Guidance')
 
-    # Editable system prompt
-    default_prompt = "You are provided with the following guidance for what a message should comply with {st.session_state['guidance_input']}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"
-    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_check'):
-        default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_check_guidance')
-
     st.subheader('Guidance')
     guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
     st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
 
+    # Editable system prompt
+    default_prompt = f"You are provided with the following guidance for what a message should comply with {st.session_state['guidance_input']}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"
+    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_check'):
+        default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_check_guidance')
+
     if st.button('Check Compliance', key='button2'):  
         if st.session_state["guidance_input"]:
             with st.spinner('Checking for compliance...'):
+                # Update the prompt with the latest input
+                updated_prompt = default_prompt.format(guidance_input=st.session_state["guidance_input"])
                 messages = [
-                    {"role": "system", "content": f"{default_prompt}"},
+                    {"role": "system", "content": updated_prompt},
                     {"role": "user", "content": f"Analyse the following text: {st.session_state['generated_text']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
@@ -82,11 +84,6 @@ def check_guidance():
 def test_persona_perception():
     st.header('Test Persona Perception')
 
-    # Editable system prompt
-    default_prompt = "You will fully embody a persona of a {persona_option} and answer the following questions based on the text. You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Answer the following questions: {st.session_state['questions_input']}. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providng commentary."
-    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_persona'):
-        default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_test_persona')
-
     st.subheader('Questions')
     questions_option = st.selectbox('Select a set of questions', list(QUESTIONS_OPTIONS.keys()), key='questions')
     st.session_state["questions_input"] = st.text_area('The following questions will be answered by the persona', value=QUESTIONS_OPTIONS[questions_option], max_chars=None, key='questions_input_widget')
@@ -95,17 +92,25 @@ def test_persona_perception():
     persona_option = st.selectbox('Select a persona', list(PERSONAS_OPTIONS.keys()), key='persona')
     st.session_state["persona_input"] = st.text_area('The following persona will answer the questions', value=PERSONAS_OPTIONS[persona_option], max_chars=None, key='persona_input_widget')
 
+    # Editable system prompt
+    default_prompt = f"You will fully embody a persona of a {persona_option} and answer the following questions based on the text. You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Answer the following questions: {st.session_state['questions_input']}. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providing commentary."
+    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_persona'):
+        default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_test_persona')
+
     if st.button('Test Persona', key='button3'):  
         if st.session_state["questions_input"] and st.session_state["persona_input"]:
             with st.spinner('Testing persona perception...'):
+                # Update the prompt with the latest input
+                updated_prompt = default_prompt.format(persona_option=persona_option, questions_input=st.session_state["questions_input"])
                 messages = [
-                    {"role": "system", "content": f"{default_prompt}"},
+                    {"role": "system", "content": updated_prompt},
                     {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 st.markdown(response['choices'][0]['message']['content'])
         else:
             st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
+
 
 if __name__ == "__main__":
     main()
