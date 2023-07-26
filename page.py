@@ -45,7 +45,12 @@ def generate_text():
                 response = openai_utils.send_request_to_openai(messages)
                 st.session_state["generated_text"] = response['choices'][0]['message']['content']
 
+    # Initialize session state if it doesn't exist
+    if "generated_text" not in st.session_state:
+        st.session_state["generated_text"] = ""
+        
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
+
 
 def check_guidance():
     st.header('Check Guidance')
