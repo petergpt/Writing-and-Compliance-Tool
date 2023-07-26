@@ -66,15 +66,16 @@ def check_guidance():
     if st.button('Check Compliance', key='button2'):  
         if st.session_state["guidance_input"]:
             with st.spinner('Checking for compliance...'):
-                # Update the dynamic part with the latest input and combine it with the static part
-                dynamic_part = default_dynamic_part.format(guidance_input=st.session_state["guidance_input"])
-                static_part = "."
+                # Combine the dynamic part with the static part
+                static_part = "Here is the guidance: " + st.session_state["guidance_input"]
+                full_prompt = static_part + " " + default_dynamic_part
                 messages = [
-                    {"role": "system", "content": dynamic_part + " " + static_part},
+                    {"role": "system", "content": full_prompt},
                     {"role": "user", "content": f"Analyse the following text: {st.session_state['generated_text']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 st.session_state["result"] = response['choices'][0]['message']['content']  # Store the content in the session state
+
 
         else:
             st.warning('Please enter guidance and ensure text is generated in Section 1')
