@@ -152,7 +152,7 @@ def test_persona_perception():
         key='persona_input_widget')
 
     # Editable dynamic part of the system prompt
-    default_dynamic_part = "You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Answer the following questions: {questions_input}. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providing commentary."
+    default_dynamic_part = "You must answer questions provided in line with what the persona would have answered after reading the text that will be provided to you. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providing commentary."
     if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_persona'):
         default_dynamic_part = st.text_area('Edit the system prompt if you want',
                                             value=default_dynamic_part,
@@ -167,7 +167,7 @@ def test_persona_perception():
                 full_prompt = static_part + " " + dynamic_part
                 messages = [
                     {"role": "system", "content": full_prompt},
-                    {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
+                    {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']} and answer the following questions: {st.session_state['questions_input']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 st.markdown(response['choices'][0]['message']['content'])
