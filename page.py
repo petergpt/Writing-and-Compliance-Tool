@@ -58,18 +58,19 @@ def check_guidance():
     guidance_option = st.selectbox('Select a guidance', list(GUIDANCE_OPTIONS.keys()), key='guidance')
     st.session_state["guidance_input"] = st.text_area('What does it need to comply with (from Section 1)?', value=GUIDANCE_OPTIONS[guidance_option], max_chars=None, key='guidance_input_widget')
 
-    # Editable system prompt
-    default_prompt = f"You are provided with the following guidance for what a message should comply with {st.session_state['guidance_input']}. You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"
+    # Editable dynamic part of the system prompt
+    default_dynamic_part = "You are provided with the following guidance for what a message should comply with."
     if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_check'):
-        default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_check_guidance')
+        default_dynamic_part = st.text_area('Edit the system prompt if you want', value=default_dynamic_part, key='system_prompt_check_guidance')
 
     if st.button('Check Compliance', key='button2'):  
         if st.session_state["guidance_input"]:
             with st.spinner('Checking for compliance...'):
-                # Update the prompt with the latest input
-                updated_prompt = default_prompt.format(guidance_input=st.session_state["guidance_input"])
+                # Update the dynamic part with the latest input and combine it with the static part
+                dynamic_part = default_dynamic_part.format(guidance_input=st.session_state["guidance_input"])
+                static_part = "You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"
                 messages = [
-                    {"role": "system", "content": updated_prompt},
+                    {"role": "system", "content": dynamic_part + " " + static_part},
                     {"role": "user", "content": f"Analyse the following text: {st.session_state['generated_text']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
@@ -92,25 +93,25 @@ def test_persona_perception():
     persona_option = st.selectbox('Select a persona', list(PERSONAS_OPTIONS.keys()), key='persona')
     st.session_state["persona_input"] = st.text_area('The following persona will answer the questions', value=PERSONAS_OPTIONS[persona_option], max_chars=None, key='persona_input_widget')
 
-    # Editable system prompt
-    default_prompt = f"You will fully embody a persona of a {persona_option} and answer the following questions based on the text. You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Answer the following questions: {st.session_state['questions_input']}. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providing commentary."
+    # Editable dynamic part of the system prompt
+    default_dynamic_part = "You will fully embody a persona of a {persona_option} and answer the following questions based on the text."
     if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_persona'):
-        default_prompt = st.text_area('Edit the system prompt if you want', value=default_prompt, key='system_prompt_test_persona')
+        default_dynamic_part = st.text_area('Edit the system prompt if you want', value=default_dynamic_part, key='system_prompt_test_persona')
 
     if st.button('Test Persona', key='button3'):  
         if st.session_state["questions_input"] and st.session_state["persona_input"]:
             with st.spinner('Testing persona perception...'):
-                # Update the prompt with the latest input
-                updated_prompt = default_prompt.format(persona_option=persona_option, questions_input=st.session_state["questions_input"])
+                # Update the dynamic part with the latest input and combine it with the static part
+                dynamic_part = default_dynamic_part.format(persona_option=persona_option, questions_input=st.session_state["questions_input"])
+                static_part = "You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providing commentary."
                 messages = [
-                    {"role": "system", "content": updated_prompt},
+                    {"role": "system", "content": dynamic_part + " " + static_part},
                     {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 st.markdown(response['choices'][0]['message']['content'])
         else:
             st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
-
 
 if __name__ == "__main__":
     main()
