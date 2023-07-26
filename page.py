@@ -5,7 +5,7 @@ from Tone_and_guidance.tone_of_voice import TONE_OF_VOICE_OPTIONS
 from Tone_and_guidance.guidance import GUIDANCE_OPTIONS
 from Tone_and_guidance.questions import QUESTIONS_OPTIONS
 from Tone_and_guidance.personas import PERSONAS_OPTIONS
-from content_type_prompts import CONTENT_TYPE_PROMPTS
+from Tone_and_guidance.content_type_prompts import CONTENT_TYPE_PROMPTS
 
 def main():
     st.sidebar.title('Navigation')
