@@ -95,24 +95,24 @@ def test_persona_perception():
     st.session_state["persona_input"] = st.text_area('The following persona will answer the questions', value=PERSONAS_OPTIONS[persona_option], max_chars=None, key='persona_input_widget')
 
     # Editable dynamic part of the system prompt
-    default_dynamic_part = "You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providing commentary."
-    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_persona'):
-        default_dynamic_part = st.text_area('Edit the system prompt if you want', value=default_dynamic_part, key='system_prompt_test_persona')
+default_dynamic_part = "You must answer questions in line with what the persona would have answered after reading the text that will be provided to you. Format your answers in a markdown table, columns: #, Question, Answer, Commentary. At the end provide an Overall Assessment giving a score of 1-5 (1=poor, 5=excellent) and providing commentary."
+if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_persona'):
+    default_dynamic_part = st.text_area('Edit the system prompt if you want', value=default_dynamic_part, key='system_prompt_test_persona')
 
-    if st.button('Test Persona', key='button3'):  
-        if st.session_state["questions_input"] and st.session_state["persona_input"]:
-            with st.spinner('Testing persona perception...'):
-                # Update the dynamic part with the latest input and combine it with the static part
-                dynamic_part = default_dynamic_part.format(persona_option=persona_option, questions_input=st.session_state["questions_input"])
-                static_part = "You will fully embody a persona {persona_option}"
-                messages = [
-                    {"role": "system", "content": dynamic_part + " " + static_part},
-                    {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
-                ]
-                response = openai_utils.send_request_to_openai(messages)
-                st.markdown(response['choices'][0]['message']['content'])
-        else:
-            st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
+if st.button('Test Persona', key='button3'):  
+    if st.session_state["questions_input"] and st.session_state["persona_input"]:
+        with st.spinner('Testing persona perception...'):
+            # Update the static part with the latest persona_option
+            static_part = "You will fully embody a persona " + persona_option
+            full_prompt = static_part + " " + default_dynamic_part
+            messages = [
+                {"role": "system", "content": full_prompt},
+                {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
+            ]
+            response = openai_utils.send_request_to_openai(messages)
+            st.markdown(response['choices'][0]['message']['content'])
+    else:
+        st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
 
 if __name__ == "__main__":
     main()
