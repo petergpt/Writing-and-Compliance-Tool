@@ -33,7 +33,7 @@ def generate_text():
         if text_input and tone_input:
             with st.spinner('Generating text...'):
                 # Include the tone_input into the static part
-                static_part = "The tone of the message should be: " + tone_input
+                static_part = "Write the text using the following guidance: " + tone_input
                 # Combine the static part and the dynamic part into the full prompt
                 full_prompt = static_part + " " + default_dynamic_part
                 messages = [
