@@ -13,58 +13,43 @@ def main():
     test_persona_perception()
 
 def generate_text():
-  st.header('Generate Text')
+    st.header('Generate Text')
 
-  # Choose content type
-  content_type = st.selectbox('Select a content type',
-                              list(CONTENT_TYPE_PROMPTS.keys()),
-                              key='content_type')
-  prompt = CONTENT_TYPE_PROMPTS[content_type]
+    # Choose content type
+    content_type = st.selectbox('Select a content type', list(CONTENT_TYPE_PROMPTS.keys()), key='content_type')
+    default_dynamic_part = CONTENT_TYPE_PROMPTS[content_type]  # This is the dynamic part of the prompt now
 
-  # Editable system prompt
-  if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_gen'):
-    prompt = st.text_area('Edit the system prompt if you want',
-                          value=prompt,
-                          key='system_prompt')
+    # Editable dynamic part of the system prompt
+    if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_gen'):
+        default_dynamic_part = st.text_area('Edit the system prompt if you want', value=default_dynamic_part, key='system_prompt')
 
-  text_input = st.text_area('What do you want to write?',
-                            value='',
-                            max_chars=10000)
+    text_input = st.text_area('What do you want to write about?', value='', max_chars=10000)
 
-  st.subheader('Tone of Voice')
-  tone_option = st.selectbox('Select a tone',
-                             list(TONE_OF_VOICE_OPTIONS.keys()),
-                             key='tone')
-  tone_input = st.text_area('What style should be written in?',
-                            value=TONE_OF_VOICE_OPTIONS[tone_option],
-                            max_chars=None,
-                            key='tone_input')
+    st.subheader('Tone of Voice')
+    tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
+    tone_input = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
 
-  if st.button('Generate Text', key='button1'):
-    if text_input and tone_input:
-      with st.spinner('Generating text...'):
-        messages = [
-            {
-                "role": "system",
-                "content": f"{prompt}"
-            },
-            {
-                "role": "user",
-                "content": f"{text_input}"
-            },
-        ]
-        response = openai_utils.send_request_to_openai(messages)
-        st.session_state["generated_text"] = response['choices'][0]['message'][
-            'content']
+    if st.button('Generate Text', key='button1'):  
+        if text_input and tone_input:
+            with st.spinner('Generating text...'):
+                # Update the dynamic part with the latest input and combine it with the static part
+                dynamic_part = default_dynamic_part.format(text_input=text_input)
+                # Include the tone_input into the static part
+                static_part = "The tone of the message should be: " + tone_input
+                full_prompt = static_part + " " + dynamic_part
+                messages = [
+                    {"role": "system", "content": full_prompt},
+                    {"role": "user", "content": f"{text_input}"},
+                ]
+                response = openai_utils.send_request_to_openai(messages)
+                st.session_state["generated_text"] = response['choices'][0]['message']['content']
 
-  # Initialize session state if it doesn't exist
-  if "generated_text" not in st.session_state:
-    st.session_state["generated_text"] = ""
+    # Initialize session state if it doesn't exist
+    if "generated_text" not in st.session_state:
+        st.session_state["generated_text"] = ""
+        
+    st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
-  st.text_area('Your text will appear here',
-               value=st.session_state["generated_text"],
-               max_chars=None,
-               key=None)
 
 
 def check_guidance():
