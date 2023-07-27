@@ -9,17 +9,13 @@ from Tone_and_guidance.content_type_prompts import CONTENT_TYPE_PROMPTS
 
 
 def main():
-  st.sidebar.title('Navigation')
-  selection = st.sidebar.radio(
-      "Go to", ['Generate Text', 'Check Guidance', 'Test Persona Perception'])
+    st.title("Quentin 🤖 - AI-based Text Generator & Checker")
+    page.generate_text()
+    page.check_guidance()
+    page.test_persona_perception()
 
-  if selection == 'Generate Text':
-    generate_text()
-  elif selection == 'Check Guidance':
-    check_guidance()
-  elif selection == 'Test Persona Perception':
-    test_persona_perception()
-
+if __name__ == "__main__":
+    main()
 
 def generate_text():
   st.header('Generate Text')
