@@ -1,6 +1,7 @@
 import streamlit as st
 import openai
 import openai_utils
+from emoji import emojize
 from Tone_and_guidance.tone_of_voice import TONE_OF_VOICE_OPTIONS
 from Tone_and_guidance.guidance import GUIDANCE_OPTIONS
 from Tone_and_guidance.questions import QUESTIONS_OPTIONS
@@ -29,7 +30,7 @@ def generate_text():
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
     tone_input = st.text_area('What style should be written in?', value=TONE_OF_VOICE_OPTIONS[tone_option], max_chars=None, key='tone_input')
 
-    if st.button('Generate Text', key='button1'):  
+    if st.button('✏ Generate Text', key='button1'):  
         if text_input and tone_input:
             with st.spinner('Generating text...'):
                 # Include the tone_input into the static part
@@ -50,14 +51,14 @@ def generate_text():
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
 def check_guidance():
-  st.header('Check Guidance')
+  st.header('✅ Check Guidance')
 
   st.subheader('Guidance')
   guidance_option = st.selectbox('Select a guidance',
                                  list(GUIDANCE_OPTIONS.keys()),
                                  key='guidance')
   st.session_state["guidance_input"] = st.text_area(
-      'What does it need to comply with (from Section 1)?',
+      'What does it need to comply with?',
       value=GUIDANCE_OPTIONS[guidance_option],
       max_chars=None,
       key='guidance_input_widget')
@@ -102,7 +103,7 @@ def check_guidance():
 
 
 def test_persona_perception():
-    st.header('Test Persona Perception')
+    st.header('🙋‍♀️ Test Persona Perception')
 
     st.subheader('Questions')
     questions_option = st.selectbox('Select a set of questions',
