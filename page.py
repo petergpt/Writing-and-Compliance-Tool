@@ -7,15 +7,10 @@ from Tone_and_guidance.questions import QUESTIONS_OPTIONS
 from Tone_and_guidance.personas import PERSONAS_OPTIONS
 from Tone_and_guidance.content_type_prompts import CONTENT_TYPE_PROMPTS
 
-
 def main():
-    st.title("Quentin 🤖 - AI-based Text Generator & Checker")
-    page.generate_text()
-    page.check_guidance()
-    page.test_persona_perception()
-
-if __name__ == "__main__":
-    main()
+    generate_text()
+    check_guidance()
+    test_persona_perception()
 
 def generate_text():
   st.header('Generate Text')
