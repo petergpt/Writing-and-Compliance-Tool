@@ -14,7 +14,7 @@ def main():
     test_persona_perception()
 
 def generate_text():
-    st.header('Generate Text')
+    st.header('✏ Generate Text')
 
     # Choose content type
     content_type = st.selectbox('Select a content type', list(CONTENT_TYPE_PROMPTS.keys()), key='content_type')
@@ -71,7 +71,7 @@ def check_guidance():
                                         value=default_dynamic_part,
                                         key='system_prompt_check_guidance')
 
-  if st.button('Check Compliance', key='button2'):
+  if st.button('✅ Check Compliance', key='button2'):
     if st.session_state["guidance_input"]:
       with st.spinner('Checking for compliance...'):
         # Combine the dynamic part with the static part
@@ -132,7 +132,7 @@ def test_persona_perception():
                                             value=default_dynamic_part,
                                             key='system_prompt_test_persona')
 
-    if st.button('Test Persona', key='button3'):
+    if st.button('🙋‍♀️ Test Persona', key='button3'):
         if st.session_state["questions_input"] and st.session_state["persona_input"]:
             with st.spinner('Testing persona perception...'):
                 # Update the dynamic part with the latest input and combine it with the static part
