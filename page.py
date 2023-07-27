@@ -32,11 +32,10 @@ def generate_text():
     if st.button('Generate Text', key='button1'):  
         if text_input and tone_input:
             with st.spinner('Generating text...'):
-                # Update the dynamic part with the latest input and combine it with the static part
-                dynamic_part = default_dynamic_part.format(text_input=text_input)
                 # Include the tone_input into the static part
                 static_part = "The tone of the message should be: " + tone_input
-                full_prompt = static_part + " " + dynamic_part
+                # Combine the static part and the dynamic part into the full prompt
+                full_prompt = static_part + " " + default_dynamic_part
                 messages = [
                     {"role": "system", "content": full_prompt},
                     {"role": "user", "content": f"{text_input}"},
@@ -49,8 +48,6 @@ def generate_text():
         st.session_state["generated_text"] = ""
         
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
-
-
 
 def check_guidance():
   st.header('Check Guidance')
