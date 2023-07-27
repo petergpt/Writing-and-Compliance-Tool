@@ -113,4 +113,45 @@ For example: "Enjoy VIP access to elegant, members-only spaces."
 9. Maintain refined sophistication. Avoid excessive exclamation points or hype.
 
 For example: "Our new app provides timely access. Download today".""",
+
+  "NatWest Job Ad":"""Job Title
+
+Include role, level (if applicable), and location in descriptive title
+
+Summary Section
+
+Job Title
+Location
+Contract Type (Permanent, Fixed Term)
+Brand (NatWest Group)
+Job Category
+Posted Date
+Closing Date
+
+Example:
+Senior Cloud Engineer, Edinburgh, Permanent, NatWest Group, Technology, Posted 01/01/2023, Closing 01/31/2023
+
+What You'll Do Section
+
+Use sub-heading "What You'll Do"
+List 4-6 bullet points summarizing core responsibilities
+Start each bullet with strong, active verb (drive, create, manage, etc)
+Use second-person perspective ("you")
+Focus on essential day-to-day duties
+Note opportunities to make an impact
+Skills You'll Need Section
+
+Use sub-heading "The Skills You'll Need"
+List 5-8 bullet points of required hard and soft skills
+Break into sub-sections if needed (Qualifications, Experience, Competencies etc)
+Lead with must-have skills/experience
+Include industry-specific certifications or methodologies
+
+Style Tips:
+Conversational, enthusiastic tone
+Second-person perspective ("you" throughout)
+Emphasize growth opportunities
+Use rhetorical questions ("Ready to join us as we reshape...?")
+Explain jargon/acronyms if needed
+Close with a call to action.""",
 }
