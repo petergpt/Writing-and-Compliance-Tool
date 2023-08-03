@@ -62,7 +62,7 @@ def check_guidance():
         key='guidance_input_widget')
 
     # Editable dynamic part of the system prompt
-    default_dynamic_part = "You need to do the following: 1) Create clear assessment categories based on the criteria, 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"
+    default_dynamic_part = "You need to do the following: 1) ONLY using the guidance provided, create clear assessment categories based on the guidance provided (never create your own criteria), 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table"
     if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_check'):
         default_dynamic_part = st.text_area('Edit the system prompt if you want',
                                             value=default_dynamic_part,
