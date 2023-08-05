@@ -154,13 +154,12 @@ def test_persona_perception():
     secret_word = st.text_input("Enter secret word:", type="password")  # This will obscure the entered value
 
 if st.button("Reveal Database"):
-    if secret_word == "quentin":  # Replace with your actual secret word
+    st.write("Button clicked!")  # Debug message to see if the button is being triggered
+    if secret_word == "YOUR_SECRET_WORD_HERE":  # Replace with your actual secret word
         from database_utils import fetch_all_records
         records = fetch_all_records()
         for record in records:
             st.write(record)
-    else:
-        st.warning("Incorrect secret word!")
 
 if __name__ == "__main__":
     main()
