@@ -14,6 +14,18 @@ def main():
     check_guidance()
     test_persona_perception()
 
+
+    # Hidden feature to display database content
+if st.button("Display Database Contents"):
+    from database_utils import fetch_all_records
+    records = fetch_all_records()
+    st.write("Trying to fetch records...")  # Debug line
+    if records:
+        for record in records:
+            st.write(record)
+    else:
+        st.write("No records found in the database.")
+
 def generate_text():
     st.header('✏ Generate Text')
 
@@ -153,13 +165,3 @@ def test_persona_perception():
 if __name__ == "__main__":
     main()
 
-    # Hidden feature to display database content
-if st.button("Display Database Contents"):
-    from database_utils import fetch_all_records
-    records = fetch_all_records()
-    st.write("Trying to fetch records...")  # Debug line
-    if records:
-        for record in records:
-            st.write(record)
-    else:
-        st.write("No records found in the database.")
