@@ -1,12 +1,13 @@
 import streamlit as st
-import openai
 import openai_utils
-from emoji import emojize
 from Tone_and_guidance.tone_of_voice import TONE_OF_VOICE_OPTIONS
 from Tone_and_guidance.guidance import GUIDANCE_OPTIONS
 from Tone_and_guidance.questions import QUESTIONS_OPTIONS
 from Tone_and_guidance.personas import PERSONAS_OPTIONS
 from Tone_and_guidance.content_type_prompts import CONTENT_TYPE_PROMPTS
+
+# Importing our database utilities
+from database_utils import store_in_database
 
 def main():
     generate_text()
@@ -18,7 +19,7 @@ def generate_text():
 
     # Choose content type
     content_type = st.selectbox('Select a content type', list(CONTENT_TYPE_PROMPTS.keys()), key='content_type')
-    default_dynamic_part = CONTENT_TYPE_PROMPTS[content_type]  # This is the dynamic part of the prompt now
+    default_dynamic_part = CONTENT_TYPE_PROMPTS[content_type]
 
     # Editable dynamic part of the system prompt
     if st.checkbox('Click to edit the system prompt', key='checkbox_prompt_gen'):
@@ -33,9 +34,7 @@ def generate_text():
     if st.button('✏ Generate Text', key='button1'):  
         if text_input and tone_input:
             with st.spinner('Generating text...'):
-                # Include the tone_input into the static part
                 static_part = "Write the text using the following guidance: " + tone_input
-                # Combine the static part and the dynamic part into the full prompt
                 full_prompt = static_part + " " + default_dynamic_part
                 messages = [
                     {"role": "system", "content": full_prompt},
@@ -43,6 +42,16 @@ def generate_text():
                 ]
                 response = openai_utils.send_request_to_openai(messages)
                 st.session_state["generated_text"] = response['choices'][0]['message']['content']
+
+                # Store data in the database
+                data = {
+                    'content_type': content_type,
+                    'text_input': text_input,
+                    'tone_option': tone_option,
+                    'tone_input': tone_input,
+                    'generated_text': st.session_state["generated_text"],
+                }
+                store_in_database(data)
 
     # Initialize session state if it doesn't exist
     if "generated_text" not in st.session_state:
@@ -78,13 +87,20 @@ def check_guidance():
                     {"role": "user", "content": f"Analyse the following text: {st.session_state['generated_text']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
-                st.session_state["compliance_result"] = response['choices'][0]['message']['content']  # Store the content in the session state
+                st.session_state["compliance_result"] = response['choices'][0]['message']['content']
+
+                # Store data in the database
+                data = {
+                    'guidance_option': guidance_option,
+                    'guidance_input': st.session_state["guidance_input"],
+                    'compliance_result': st.session_state["compliance_result"],
+                }
+                store_in_database(data)
         else:
             st.warning('Please enter guidance and ensure text is generated in Section 1')
 
     if "compliance_result" in st.session_state:
-        st.markdown(st.session_state["compliance_result"])  # Display the stored result
-
+        st.markdown(st.session_state["compliance_result"])
 
 def test_persona_perception():
     st.header('🙋‍♀️ Test Persona Perception')
@@ -119,12 +135,20 @@ def test_persona_perception():
                     {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']} and answer the following questions: {st.session_state['questions_input']}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
-                st.session_state["persona_result"] = response['choices'][0]['message']['content']  # Store the content in the session state
+                st.session_state["persona_result"] = response['choices'][0]['message']['content']
+
+                # Store data in the database
+                data = {
+                    'questions_option': questions_option,
+                    'persona_option': persona_option,
+                    'persona_result': st.session_state["persona_result"],
+                }
+                store_in_database(data)
         else:
             st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
 
     if "persona_result" in st.session_state:
-        st.markdown(st.session_state["persona_result"])  # Display the stored result
+        st.markdown(st.session_state["persona_result"])
 
 if __name__ == "__main__":
-  main()
+    main()
