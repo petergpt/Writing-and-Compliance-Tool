@@ -151,7 +151,8 @@ def test_persona_perception():
         st.markdown(st.session_state["persona_result"])
     
     # Hidden feature to display database content
-    secret_word = st.text_input("Enter secret word:", value="")  # Remove default value if you don't want one
+    secret_word = st.text_input("Enter secret word:", type="password")  # This will obscure the entered value
+
 if st.button("Reveal Database"):
     if secret_word == "quentin":  # Replace with your actual secret word
         from database_utils import fetch_all_records
