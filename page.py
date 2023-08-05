@@ -150,6 +150,9 @@ def test_persona_perception():
     if "persona_result" in st.session_state:
         st.markdown(st.session_state["persona_result"])
     
+if __name__ == "__main__":
+    main()
+
     # Hidden feature to display database content
 if st.button("Display Database Contents"):
     from database_utils import fetch_all_records
@@ -160,6 +163,3 @@ if st.button("Display Database Contents"):
             st.write(record)
     else:
         st.write("No records found in the database.")
-
-if __name__ == "__main__":
-    main()
