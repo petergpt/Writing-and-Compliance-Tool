@@ -66,3 +66,15 @@ def fetch_previous_response(id):
         columns = ["id", "content_type", "text_input", "tone_option", "tone_input", "generated_text", "guidance_option", "guidance_input", "compliance_result", "questions_option", "persona_option", "persona_result"]
         return dict(zip(columns, record))
     return None
+
+def fetch_all_records():
+    conn = sqlite3.connect(DATABASE_NAME)
+    c = conn.cursor()
+
+    c.execute('SELECT * FROM api_data')
+    records = c.fetchall()
+    
+    conn.close()
+
+    columns = ["id", "content_type", "text_input", "tone_option", "tone_input", "generated_text", "guidance_option", "guidance_input", "compliance_result", "questions_option", "persona_option", "persona_result"]
+    return [dict(zip(columns, record)) for record in records]
