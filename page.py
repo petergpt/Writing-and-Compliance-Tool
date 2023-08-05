@@ -153,7 +153,7 @@ def test_persona_perception():
     # Hidden feature to display database content
     secret_word = st.text_input("Enter secret word:", value="")  # Remove default value if you don't want one
 if st.button("Reveal Database"):
-    if secret_word == "YOUR_SECRET_WORD_HERE":  # Replace with your actual secret word
+    if secret_word == "quentin":  # Replace with your actual secret word
         from database_utils import fetch_all_records
         records = fetch_all_records()
         for record in records:
