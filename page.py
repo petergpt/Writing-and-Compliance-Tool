@@ -25,7 +25,6 @@ def generate_text():
         default_dynamic_part = st.text_area('Edit the system prompt if you want', value=default_dynamic_part, key='system_prompt')
 
     text_input = st.text_area('What do you want to write about?', value='', max_chars=10000)
-    st.session_state["edited_text"] = text_input  # Save the (possibly edited) text to session state
 
     st.subheader('Tone of Voice')
     tone_option = st.selectbox('Select a tone', list(TONE_OF_VOICE_OPTIONS.keys()), key='tone')
@@ -45,11 +44,9 @@ def generate_text():
                 response = openai_utils.send_request_to_openai(messages)
                 st.session_state["generated_text"] = response['choices'][0]['message']['content']
 
-    # Initialize session state if it doesn't exist
-    if "generated_text" not in st.session_state:
-        st.session_state["generated_text"] = ""
-        
-    st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
+    # Display either the generated text or the edited version
+    edited_or_generated_text = st.text_area('Your text will appear here', value=st.session_state.get("generated_text", ""), max_chars=None, key=None)
+    st.session_state["generated_text"] = edited_or_generated_text
 
 def check_guidance():
     st.header('✅ Check Guidance')
