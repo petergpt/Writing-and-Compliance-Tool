@@ -109,7 +109,7 @@ def test_persona_perception():
         default_dynamic_part = st.text_area('Edit the system prompt if you want', value=default_dynamic_part, key='system_prompt_test_persona')
 
     if st.button('🙋‍♀️ Test Persona', key='button3'):
-        if st.session_state["questions_input"] and st.session_state["persona_input"]:
+        if st.session_state["questions_input"] and st.session_state["persona_input"] and "generated_text" in st.session_state:
             with st.spinner('Testing persona perception...'):
                 static_part = "You will fully embody a persona " + persona_option
                 full_prompt = static_part + " " + default_dynamic_part
