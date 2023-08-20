@@ -70,11 +70,11 @@ def check_guidance():
         framework = response['choices'][0]['message']['content']
 
         # Step 2: Analyze the text using the generated framework
-        if st.session_state["guidance_input"] and "edited_text" in st.session_state:
+        if st.session_state["guidance_input"] and "generated_text" in st.session_state:
             static_part_analysis = f"""1) Take the framework provided ({framework}), 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table."""
             messages = [
                 {"role": "system", "content": static_part_analysis},
-                {"role": "user", "content": f"Analyse the following text using the framework provided: {st.session_state['edited_text']}"},
+                {"role": "user", "content": f"Analyse the following text using the framework provided: {st.session_state['generated_text']}"},
             ]
             with st.spinner('Checking for compliance...'):
                 response = openai_utils.send_request_to_openai(messages)
