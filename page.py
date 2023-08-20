@@ -61,32 +61,31 @@ def check_guidance():
         max_chars=None,
         key='guidance_input_widget')
 
-    # Step 1: Create the framework
-    static_part_framework = "You need to do the following: ONLY using the guidance provided, create clear assessment categories based on the guidance provided (never create your own criteria)."
-    messages = [
-        {"role": "system", "content": static_part_framework},
-        {"role": "user", "content": f"Here is the guidance: {st.session_state['guidance_input']}"},
-    ]
-    response = openai_utils.send_request_to_openai(messages)
-    framework = response['choices'][0]['message']['content']
-
-    # Step 2: Analyze the text using the generated framework
-    if st.session_state["guidance_input"] and "generated_text" in st.session_state:
-        static_part_analysis = f"""1) Take the framework provided ({framework}), 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table."""
+    if st.button('✅ Check Compliance', key='button2'):
+        # Step 1: Create the framework
+        static_part_framework = "You need to do the following: ONLY using the guidance provided, create clear assessment categories based on the guidance provided (never create your own criteria)."
         messages = [
-            {"role": "system", "content": static_part_analysis},
-            {"role": "user", "content": f"Analyse the following text using the framework provided: {st.session_state['generated_text']}"},
+            {"role": "system", "content": static_part_framework},
+            {"role": "user", "content": f"Here is the guidance: {st.session_state['guidance_input']}"},
         ]
-        if st.button('✅ Check Compliance', key='button2'):
+        response = openai_utils.send_request_to_openai(messages)
+        framework = response['choices'][0]['message']['content']
+
+        # Step 2: Analyze the text using the generated framework
+        if st.session_state["guidance_input"] and "generated_text" in st.session_state:
+            static_part_analysis = f"""1) Take the framework provided ({framework}), 2) Analyse the text provided against it, 3) Score the text against each category on a 1-5 scale (1=poor, 5=excellent),4) Provide short commentary against each category, 5) On the very top of your assessment give an overall score and a short assessment of the message versus guidance. Format all of this in a markdown table."""
+            messages = [
+                {"role": "system", "content": static_part_analysis},
+                {"role": "user", "content": f"Analyse the following text using the framework provided: {st.session_state['generated_text']}"},
+            ]
             with st.spinner('Checking for compliance...'):
                 response = openai_utils.send_request_to_openai(messages)
                 st.session_state["compliance_result"] = response['choices'][0]['message']['content']  # Store the content in the session state
-    else:
-        st.warning('Please enter guidance and ensure text is generated in Section 1')
+        else:
+            st.warning('Please enter guidance and ensure text is generated in Section 1')
 
     if "compliance_result" in st.session_state:
         st.markdown(st.session_state["compliance_result"])  # Display the stored result
-
 
 def test_persona_perception():
     st.header('🙋‍♀️ Test Persona Perception')
