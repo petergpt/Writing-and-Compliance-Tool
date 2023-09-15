@@ -1,49 +1,50 @@
 # Dictionary mapping dropdown options to corresponding text
 TONE_OF_VOICE_OPTIONS = {
-    "NatWest Experiment": """Tone of Voice 
-    When writing for NatWest follow these guidelines:
-    1.	Talk like a person not a bank,
-    For example: ‘Get your money into shape’ instead of ‘Structure your finances’
+    "NatWest Experiment": """ 
+When writing for NatWest follow these guidelines:
 
-    2.	Make it informal not formal.  
-    For example: ‘chat to you’ instead of ‘discuss with you’, ‘money’ instead of ‘finances’
+1. Talk like a person not a bank,
+For example: ‘Get your money into shape’ instead of ‘Structure your finances’
 
-    3.	Keep it conversational and warm
-    For example: ‘Just to let you know’ instead ‘We must inform you’
+2. Make it informal not formal.  
+For example: ‘chat to you’ instead of ‘discuss with you’, ‘money’ instead of ‘finances’
 
-    4.	No jargon or complex financial language.  
-    For example: ‘There isn’t enough money in your account to make this payments’ instead of ‘There aren’t sufficient funds in your account to make this transaction’
+3. Keep it conversational and warm
+For example: ‘Just to let you know’ instead ‘We must inform you’
 
-    5.	Write in the active voice    
-    For example: ‘we’ve got your application’ instead of ‘your application has been received’
+4. No jargon or complex financial language.  
+For example: ‘There isn’t enough money in your account to make this payments’ instead of ‘There aren’t sufficient funds in your account to make this transaction’
 
-    6.	Use word Contractions instead of full words
-    For example: ‘aren’t’ instead ‘are not’, ‘can’t’ instead of ‘cannot’, ‘don’t’ instead of ‘do not’, ‘we’ve’ instead ‘we have’.
+5. Write in the active voice    
+For example: ‘we’ve got your application’ instead of ‘your application has been received’
 
-    7.	Lead on the Benefit not the product features   
-    For example: ‘You could get £175 when you switch your current account to us’ Instead of ‘Open a current account and switch into us, and you could get our £175 Switch offer.’
+6. Use word Contractions instead of full words
+For example: ‘aren’t’ instead ‘are not’, ‘can’t’ instead of ‘cannot’, ‘don’t’ instead of ‘do not’, ‘we’ve’ instead ‘we have’.
 
-    8.	Use simple language, write for the UK national reading age of nine years old
+7. Lead on the Benefit not the product features   
+For example: ‘You could get £175 when you switch your current account to us’ Instead of ‘Open a current account and switch into us, and you could get our £175 Switch offer.’
 
-    9.	"you" and "your" is always the customer ‘Our account matches your lifestyle’
+8. Use simple language, write for the UK national reading age of nine years old
 
-    10.	“we”, “us” and “our” is always our organisation “we’re happy to have you”
+9. "you" and "your" is always the customer ‘Our account matches your lifestyle’
 
-    11.	Call to actions always need a verb. “Get an Agreement in Principle” instead of “Mortgage offers”,  “Start saving now” instead of “Saving accounts”
+10. “we”, “us” and “our” is always our organisation “we’re happy to have you”
 
-    12.	No double negatives in sentences
+11. Call to actions always need a verb. “Get an Agreement in Principle” instead of “Mortgage offers”,  “Start saving now” instead of “Saving accounts”
 
-    13.	Short sentences “please upload your ID” instead “We’ll need a copy of your identification, please upload it”
+12.	No double negatives in sentences
 
-    14.	No more than 5 bullets in a list
+13.	Short sentences “please upload your ID” instead “We’ll need a copy of your identification, please upload it”
 
-    15.	Use sentence case – only the first word in a sentence is capitalised, don’t bold text, don’t use italics, don’t use “&”. For example: "Learn more about the app" rather than "LEARN MORE ABOUT THE APP."
+14.	No more than 5 bullets in a list
 
-    16.	Break up long sections of text with headers, bullet point lists and clear formatting. 
+15.	Use sentence case – only the first word in a sentence is capitalised, don’t bold text, don’t use italics, don’t use “&”. For example: "Learn more about the app" rather than "LEARN MORE ABOUT THE APP."
 
-    17.	Make copy easy to scan with clear, simple and meaningful headings that set the narrative for the copy below
+16.	Break up long sections of text with headers, bullet point lists and clear formatting. 
 
-    18.	Don't use English colloquialisms or idioms. For example: use 'pay out' instead of 'cough up'.
+17.	Make copy easy to scan with clear, simple and meaningful headings that set the narrative for the copy below
+
+18.	Don't use English colloquialisms or idioms. For example: use 'pay out' instead of 'cough up'.
     """,
     "Sainsbury's": """When writing text for Sainsbury's:
 
