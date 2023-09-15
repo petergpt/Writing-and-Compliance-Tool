@@ -45,7 +45,7 @@ TONE_OF_VOICE_OPTIONS = {
 
     18.	Don't use English colloquialisms or idioms. For example: use 'pay out' instead of 'cough up'.
     """,
-    "Sainsbury's": """When writing for Sainsbury's:
+    "Sainsbury's": """When writing text for Sainsbury's:
 
 1. Use a warm, friendly tone. Avoid sounding corporate or formal. Make the customer feel like they're interacting with a real person.
 
