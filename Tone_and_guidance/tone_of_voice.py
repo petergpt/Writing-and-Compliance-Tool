@@ -1,7 +1,6 @@
 # Dictionary mapping dropdown options to corresponding text
 TONE_OF_VOICE_OPTIONS = {
-    "NatWest Experiment": """ 
-When writing for NatWest follow these guidelines:
+    "NatWest Experiment": """When writing for NatWest follow these guidelines:
 
 1. Talk like a person not a bank,
 For example: ‘Get your money into shape’ instead of ‘Structure your finances’
