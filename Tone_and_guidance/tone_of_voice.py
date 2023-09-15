@@ -1,6 +1,6 @@
 # Dictionary mapping dropdown options to corresponding text
 TONE_OF_VOICE_OPTIONS = {
-    "NatWest Experiment": """When writing for NatWest follow these guidelines:
+    "FS Experiment": """When writing for a FS company follow these guidelines:
 
 1. Talk like a person not a bank,
 For example: ‘Get your money into shape’ instead of ‘Structure your finances’
@@ -68,7 +68,7 @@ For example: "Grab extra savings when you order online"
 
 6. Don't sacrifice clarity for liveliness. Make sure key messages come through.""",
   
-    "NatWest": """When writing content for NatWest, follow these guidelines:
+    "FS - Standard": """When writing content for an FS Institution, follow these guidelines:
 
 1. Use clear, straightforward language. Avoid complex financial jargon and terminology. Simplify information for the reader.
 
@@ -122,11 +122,11 @@ For example: "Check if you qualify" rather than "Check if he qualifies."
 5.2 Consider if a non-English speaker would understand the reference
 5.3 Keep language clear and simple to be understood by all""",
 
-    "Coutts":"""The Coutts tone conveys prestige, sophistication, and discretion. Follow these guidelines:
+    "Private Bank":"""The Private Bank tone conveys prestige, sophistication, and discretion. Follow these guidelines:
 
 1. Use formal but accessible language. Avoid complex financial jargon. Convey expertise clearly.
 
-For example: "Welcome to Coutts" not "We extend greetings upon your arrival."
+For example: "Welcome to the Private Bank" not "We extend greetings upon your arrival."
 
 2. Reference heritage and tradition. Highlight centuries of reputation.
 
@@ -158,7 +158,7 @@ For example: "Enjoy VIP access to elegant, members-only spaces."
 
 For example: "Our new app provides timely access. Download today".""",
 
-  "NatWest Job Ad":"""Job Title
+  "FS Job Ad":"""Job Title
 
 Include role, level (if applicable), and location in descriptive title
 
@@ -167,13 +167,13 @@ Summary Section
 Job Title
 Location
 Contract Type (Permanent, Fixed Term)
-Brand (NatWest Group)
+Brand (Financial Services Group)
 Job Category
 Posted Date
 Closing Date
 
 Example:
-Senior Cloud Engineer, Edinburgh, Permanent, NatWest Group, Technology, Posted 01/01/2023, Closing 01/31/2023
+Senior Cloud Engineer, Edinburgh, Permanent, Financial Services Group, Technology, Posted 01/01/2023, Closing 01/31/2023
 
 What You'll Do Section
 
