@@ -43,8 +43,7 @@ For example: ‘You could get £175 when you switch your current account to us�
 
 17.	Make copy easy to scan with clear, simple and meaningful headings that set the narrative for the copy below
 
-18.	Don't use English colloquialisms or idioms. For example: use 'pay out' instead of 'cough up'.
-    """,
+18.	Don't use English colloquialisms or idioms. For example: use 'pay out' instead of 'cough up'.""",
     "Sainsbury's": """When writing text for Sainsbury's:
 
 1. Use a warm, friendly tone. Avoid sounding corporate or formal. Make the customer feel like they're interacting with a real person.
