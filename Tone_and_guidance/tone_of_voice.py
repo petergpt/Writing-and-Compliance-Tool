@@ -1,5 +1,50 @@
 # Dictionary mapping dropdown options to corresponding text
 TONE_OF_VOICE_OPTIONS = {
+    "NatWest Experiment": """Tone of Voice 
+    When writing for NatWest follow these guidelines:
+    1.	Talk like a person not a bank,
+    For example: ‘Get your money into shape’ instead of ‘Structure your finances’
+
+    2.	Make it informal not formal.  
+    For example: ‘chat to you’ instead of ‘discuss with you’, ‘money’ instead of ‘finances’
+
+    3.	Keep it conversational and warm
+    For example: ‘Just to let you know’ instead ‘We must inform you’
+
+    4.	No jargon or complex financial language.  
+    For example: ‘There isn’t enough money in your account to make this payments’ instead of ‘There aren’t sufficient funds in your account to make this transaction’
+
+    5.	Write in the active voice    
+    For example: ‘we’ve got your application’ instead of ‘your application has been received’
+
+    6.	Use word Contractions instead of full words
+    For example: ‘aren’t’ instead ‘are not’, ‘can’t’ instead of ‘cannot’, ‘don’t’ instead of ‘do not’, ‘we’ve’ instead ‘we have’.
+
+    7.	Lead on the Benefit not the product features   
+    For example: ‘You could get £175 when you switch your current account to us’ Instead of ‘Open a current account and switch into us, and you could get our £175 Switch offer.’
+
+    8.	Use simple language, write for the UK national reading age of nine years old
+
+    9.	"you" and "your" is always the customer ‘Our account matches your lifestyle’
+
+    10.	“we”, “us” and “our” is always our organisation “we’re happy to have you”
+
+    11.	Call to actions always need a verb. “Get an Agreement in Principle” instead of “Mortgage offers”,  “Start saving now” instead of “Saving accounts”
+
+    12.	No double negatives in sentences
+
+    13.	Short sentences “please upload your ID” instead “We’ll need a copy of your identification, please upload it”
+
+    14.	No more than 5 bullets in a list
+
+    15.	Use sentence case – only the first word in a sentence is capitalised, don’t bold text, don’t use italics, don’t use “&”. For example: "Learn more about the app" rather than "LEARN MORE ABOUT THE APP."
+
+    16.	Break up long sections of text with headers, bullet point lists and clear formatting. 
+
+    17.	Make copy easy to scan with clear, simple and meaningful headings that set the narrative for the copy below
+
+    18.	Don't use English colloquialisms or idioms. For example: use 'pay out' instead of 'cough up'.
+    """,
     "Sainsbury's": """When writing for Sainsbury's:
 
 1. Use a warm, friendly tone. Avoid sounding corporate or formal. Make the customer feel like they're interacting with a real person.
@@ -113,4 +158,69 @@ For example: "Enjoy VIP access to elegant, members-only spaces."
 9. Maintain refined sophistication. Avoid excessive exclamation points or hype.
 
 For example: "Our new app provides timely access. Download today".""",
+
+  "NatWest Job Ad":"""Job Title
+
+Include role, level (if applicable), and location in descriptive title
+
+Summary Section
+
+Job Title
+Location
+Contract Type (Permanent, Fixed Term)
+Brand (NatWest Group)
+Job Category
+Posted Date
+Closing Date
+
+Example:
+Senior Cloud Engineer, Edinburgh, Permanent, NatWest Group, Technology, Posted 01/01/2023, Closing 01/31/2023
+
+What You'll Do Section
+
+Use sub-heading "What You'll Do"
+List 4-6 bullet points summarizing core responsibilities
+Start each bullet with strong, active verb (drive, create, manage, etc)
+Use second-person perspective ("you")
+Focus on essential day-to-day duties
+Note opportunities to make an impact
+Skills You'll Need Section
+
+Use sub-heading "The Skills You'll Need"
+List 5-8 bullet points of required hard and soft skills
+Break into sub-sections if needed (Qualifications, Experience, Competencies etc)
+Lead with must-have skills/experience
+Include industry-specific certifications or methodologies
+
+Style Tips:
+Conversational, enthusiastic tone
+Second-person perspective ("you" throughout)
+Emphasize growth opportunities
+Use rhetorical questions ("Ready to join us as we reshape...?")
+Explain jargon/acronyms if needed
+Close with a call to action.""",
+  
+  "Job Ads": """Job Ad Checklist
+
+    To help maintain a high standard of job ads, please use this checklist and correct any issues before you post your ad.
+
+    Please check that:
+    - the correct job profile has been used
+    - the correct brand has been used - please note the ad won't post without a brand
+    - the posting title is correct and is used consistently throughout the ad
+    - grade information has been removed from the job posting title
+    - the Additional Job Description matches the advert on the job profile OR only very minimal changes have been made
+    - if the post is a secondment, add the details as a fourth hook - "We're offering this role for a period of 6 months' or however long it's for
+    - the ad has been checked for spelling mistakes and for grammar mistakes, such as extra space between words, and uses UK English (using s instead of z, e.g., 'specialised' and not 'specialized')
+    - any business-specific acronyms or abbreviations have been explained when first used and are then used consistently through the ad
+    - any ampersands (&) have only been used in titles, e.g., Change & Project Management
+    - the ad is correctly formatted (bullet list, normal, H2)
+    - the ad has been written in our tone of voice and style
+    - the ad uses abbreviations where possible and appropriate (they're, you'll, we're)
+    - the ad refers to 'people' or 'colleagues' instead of staff, and 'us', 'we', or 'our' is used rather than using 'the business' every time. Using 'the business' is fine from an SEO point of view, but try not to overuse it, make your sentences conversational and inclusive
+    - sentences are not too long, and a good range of length of sentence has been used to help readability
+    - sentences that introduce bullet points start with a colon and read as a conversational sentence through the bullet points
+    - full stops at the end of bullet points been removed
+    - the ad is clearly written and easy to understand for potential candidates
+    - capital letters are used for specific job title or team, and lower case if referring to plural roles or teams.""",
 }
