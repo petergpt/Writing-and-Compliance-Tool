@@ -27,7 +27,7 @@ def generate_text():
                     {"role": "user", "content": f"{text_input}"},
                 ]
                 response = openai_utils.send_request_to_openai(messages)
-                st.session_state["generated_text"] = response['choices'][0]['message']['content']
+                st.session_state["generated_text"] = response.choices[0].message
 
     st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
 
@@ -48,16 +48,12 @@ def check_guidance():
                         {"role": "user", "content": f"Analyse the following text: {st.session_state['generated_text']}"},
                     ]
                     response = openai_utils.send_request_to_openai(messages)
-                    st.session_state["result"] = response['choices'][0]['message']['content']  # Store the content in the session state
+                    st.session_state["result"] = response['choices'][0]['message']['content']
 
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
         if "result" in st.session_state:
-            st.markdown(st.session_state["result"])  # Display the stored result
-    # else:
-    #     st.warning('Please generate text first')
-
-
+            st.markdown(st.session_state["result"]) 
 
 def test_persona_perception():
     if "generated_text" in st.session_state and st.session_state["generated_text"] and "guidance_input" in st.session_state and st.session_state["guidance_input"]:
