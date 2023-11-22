@@ -29,7 +29,8 @@ def generate_text():
                 response = openai_utils.send_request_to_openai(messages)
                 st.session_state["generated_text"] = response.choices[0].message
 
-    st.text_area('Your text will appear here', value=st.session_state["generated_text"], max_chars=None, key=None)
+    st.text_area('Your text will appear here', value=st.session_state["generated_text"].content if st.session_state["generated_text"] else "", max_chars=None, key=None)
+
 
 
 def check_guidance():
@@ -54,7 +55,7 @@ def check_guidance():
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
         if "result" in st.session_state:
-            st.markdown(st.session_state["result"]) 
+            st.markdown(st.session_state["result"].content if st.session_state["result"] else "")
 
 def test_persona_perception():
     if "generated_text" in st.session_state and st.session_state["generated_text"] and "guidance_input" in st.session_state and st.session_state["guidance_input"]:
@@ -76,7 +77,8 @@ def test_persona_perception():
                         {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
                     ]
                     response = openai_utils.send_request_to_openai(messages)
-                    st.markdown(response.choices[0].message)
+                    st.markdown(response.choices[0].message.content if response.choices[0].message else "")
+
             else:
                 st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
     # else:
