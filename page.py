@@ -48,7 +48,8 @@ def check_guidance():
                         {"role": "user", "content": f"Analyse the following text: {st.session_state['generated_text']}"},
                     ]
                     response = openai_utils.send_request_to_openai(messages)
-                    st.session_state["result"] = response['choices'][0]['message']['content']
+                    st.session_state["result"] = response.choices[0].message
+
 
             else:
                 st.warning('Please enter guidance and ensure text is generated in Section 1')
@@ -75,7 +76,7 @@ def test_persona_perception():
                         {"role": "user", "content": f"Read the following text: {st.session_state['generated_text']}"},
                     ]
                     response = openai_utils.send_request_to_openai(messages)
-                    st.markdown(response['choices'][0]['message']['content'])
+                    st.markdown(response.choices[0].message)
             else:
                 st.warning('Please enter questions and persona, and ensure text is generated and guidance is entered')
     # else:
